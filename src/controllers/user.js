@@ -44,12 +44,12 @@ exports.createUser = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
+    res.status(200).send({username:req.body.username,
+      password:req.body.password});
     const user = await User.findByCredentials(
       req.body.username,
       req.body.password
     );
-    console.log(req.body.username,
-      req.body.password);
     const token = user.generateToken(req.body.username,
       req.body.password);
     res.status(200).send({ user, token });
