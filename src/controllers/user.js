@@ -48,7 +48,8 @@ exports.login = async (req, res) => {
       req.body.username,
       req.body.password
     );
-    console.log("");
+    console.log(req.body.username,
+      req.body.password);
     const token = user.generateToken(req.body.username,
       req.body.password);
     res.status(200).send({ user, token });
