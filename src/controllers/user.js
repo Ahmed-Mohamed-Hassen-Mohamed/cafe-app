@@ -44,8 +44,6 @@ exports.createUser = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    res.status(200).send({username:req.body.username,
-      password:req.body.password});
     const user = await User.findByCredentials(
       req.body.username,
       req.body.password
