@@ -20,11 +20,13 @@ app.use(categoryRouter);
 app.use(subCategoryRouter);
 app.use(roomRouter);
 app.use(orderRouter);
-
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 app.all("*", (req, res, next) => {
   next(new Error(`Con't find this route: ${req.originalUrl}`));
 });
-const port = process.env.PORT || 8500;
+const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log("Server is running");
 });
