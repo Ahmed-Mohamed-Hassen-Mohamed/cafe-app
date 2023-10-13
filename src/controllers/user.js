@@ -34,6 +34,7 @@ exports.createUser = async (req, res) => {
         .status(404)
         .send({ Error: "authorizedError", message: "Unauthorized" });
     }
+    res.status(200).send(req.body);
     await user.save();
     const token = user.generateToken();
     res.status(200).send({ user, token });
