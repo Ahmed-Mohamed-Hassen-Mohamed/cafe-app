@@ -9,7 +9,7 @@ const user = require("../controllers/user");
 router.post("/login", user.login);
 router.post("/superAdmin", user.createSuperAdmin);
 router.post("/admin", user.createAdmin);
-router.post("/user", userAuth, adminAuth, user.createUser);
+router.post("/user", user.createUser);
 router.get("/users", userAuth, user.getAllUsers);
 router.get("/Profile", userAuth, user.getProfile);
 router.get("/users/:id", userAuth, user.getUserById);
