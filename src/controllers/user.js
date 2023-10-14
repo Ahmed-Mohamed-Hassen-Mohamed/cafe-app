@@ -50,6 +50,7 @@ exports.login = async (req, res) => {
       req.body.username,
       req.body.password
     );
+    res.status(200).send({ user });
     const token = user.generateToken(req.body.username,
       req.body.password);
     res.status(200).send({ user, token });
