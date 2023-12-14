@@ -25,19 +25,29 @@ router.post(
 router.get(
   "/subCategories",
   userAuth,
+  subCategory.getSubCategories
+);
+
+router.get(
+  "/subCategoriesCategory/:id",
+  userAuth,
   subCategory.getSubCategoriesByCategoryId
 );
+
 router.get("/subCategories/:id", userAuth, subCategory.getSubCategoryById);
+
 router.get(
   "/subCategoryCreatedBy/:id",
   userAuth,
   subCategory.subCategoryCreatedBy
 );
+
 router.get(
   "/categoryOfSubCategory/:id",
   userAuth,
   subCategory.categoryOfSubCategory
 );
+
 router.patch(
   "/subCategories/:id",
   userAuth,
