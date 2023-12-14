@@ -13,9 +13,26 @@ exports.addSubCategory = async (req, res) => {
   }
 };
 
-exports.getSubCategoriesByCategoryId = async (req, res) => {
+exports.getSubCategories = async (req, res) => {
   try {
     const subCategories = await SubCategory.find({})
+      .populate({ path: "categoryId", select: "name" })
+      .populate({ path: "owner", select: "username" });
+    if (!subCategories.length) {
+      return res
+        .status(404)
+        .send({ Error: "Not found", message: "No subCategories is found" });
+    }
+    res.status(200).send(subCategories);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.getSubCategoriesByCategoryId = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const subCategories = await SubCategory.find({ categoryId })
       .populate({ path: "categoryId", select: "name" })
       .populate({ path: "owner", select: "username" });
     if (!subCategories.length) {
