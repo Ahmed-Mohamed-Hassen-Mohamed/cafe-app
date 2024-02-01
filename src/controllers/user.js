@@ -44,6 +44,25 @@ exports.createUser = async (req, res) => {
   }
 };
 
+exports.loginAdmin = async (req, res) => {
+  try {
+    const user = await User.findByCredentials(
+      req.body.username,
+      req.body.password
+    );
+    if (user.roles != 1) {
+      return res
+        .status(404)
+        .send({ Error: "authorizedError", message: "Unauthorized" });
+    }
+    const token = user.generateToken(req.body.username,
+      req.body.password);
+    res.status(200).send({ user, token });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
 exports.login = async (req, res) => {
   try {
     const user = await User.findByCredentials(
