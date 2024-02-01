@@ -5,8 +5,9 @@ const superAdminAuth = require("../middelware/superAdminAuth");
 const adminAuth = require("../middelware/adminAuth");
 const userAuth = require("../middelware/userAuth");
 const user = require("../controllers/user");
-
+ 
 router.post("/login", user.login);
+router.post("/loginAdmin", user.loginAdmin);
 router.post("/superAdmin", user.createSuperAdmin);
 router.post("/admin", user.createAdmin);
 router.post("/user", user.createUser);
